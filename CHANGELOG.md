@@ -2,6 +2,16 @@
 
 Alle noemenswaardige wijzigingen in `receptenvanger` worden hier vastgelegd.
 
+## [0.4.1] - 2026-03-10
+### Gewijzigd
+- Popup-layout van de extension verbreed zodat JSON in Edge/Chrome beter leesbaar is.
+- `recipe_document` JSON-schema opgeschoond voor OpenAI Responses API compatibiliteit.
+- `required` velden in het geserialiseerde schema genormaliseerd zodat OpenAI het schema accepteert.
+
+### Gevalideerd
+- Unpacked extension handmatig getest op `https://miljuschka.nl/crispy-zalm-bowl/`
+- Responses API schema-call live gevalideerd met een echte OpenAI key
+
 ## [0.4.0] - 2026-03-10
 ### Toegevoegd
 - Users, recipe books en book entries in de lokale API.

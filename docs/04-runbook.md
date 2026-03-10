@@ -6,7 +6,8 @@
 3. Vul minimaal `OPENAI_API_KEY`, `OPENAI_MODEL`, `PORT` en `DATABASE_PATH` in.
 4. Bouw alles met `npm run build`.
 5. Start de API met `npm run start:api`.
-6. Laad desgewenst de extension uit `dist/` als unpacked extension in Chrome.
+6. Laad desgewenst de extension uit `dist/` als unpacked extension in Chrome of Edge.
+7. Na elke codewijziging: opnieuw `npm run build`, dan `Reload` op de extension en herlaad de webpagina.
 
 ## Quick smoke test
 1. `GET /health`
@@ -16,6 +17,23 @@
 5. `POST /api/users/:userId/books/:bookId/recipes` voor een publiek recept
 6. `GET /api/users/:userId/recipes`
 7. `GET /api/recipes/public`
+8. Extension handmatig testen op een echte receptpagina, bijvoorbeeld `https://miljuschka.nl/crispy-zalm-bowl/`
+
+## Extension smoke test
+1. Open een normale `https://` receptpagina.
+2. Controleer dat je niet op een browser-interne pagina zit zoals `edge://extensions`.
+3. Open de popup.
+4. Klik `Vang recept van huidige pagina`.
+5. Controleer dat JSON verschijnt.
+6. Test `Kopieer` en `Download`.
+
+## Troubleshooting extension
+- `Could not establish connection. Receiving end does not exist.`:
+  herlaad de webpagina of reload de unpacked extension. Het content script zit dan meestal niet in de huidige tab.
+- OpenAI `invalid_json_schema`:
+  gebruik de nieuwste build; oudere builds bevatten nog een incompatibel `recipe_document` schema voor de Responses API.
+- Popup te smal:
+  gebruik een recente build; de popupbreedte is vergroot in de laatste versie.
 
 ## Voorbeeld smoke cURL
 ```bash

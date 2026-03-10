@@ -9,6 +9,9 @@ Status per 10 maart 2026:
 - extension MVP werkt lokaal
 - lokale API werkt lokaal
 - user books en publieke recepten werken
+- extension handmatig gevalideerd op een echte receptpagina: `https://miljuschka.nl/crispy-zalm-bowl/`
+- OpenAI `response_format` schema voor `recipe_document` is live gevalideerd tegen de Responses API
+- popup-layout is verbreed zodat JSON in Edge/Chrome leesbaar blijft
 - `import-json` is handmatig end-to-end gevalideerd
 - `import-url` en `import-image` zijn technisch aanwezig, maar nog niet live gevalideerd met een echte OpenAI key in deze repo-sessie
 
@@ -26,6 +29,7 @@ Status per 10 maart 2026:
 - de lokale API verwacht een eigen `OPENAI_API_KEY` in `.env`
 - Ollama is nog niet aangesloten
 - `node:sqlite` is nog experimenteel in Node 24; zie [known issue](docs/06-known-issues/0001-node-sqlite-experimental.md)
+- na elke codewijziging moet de unpacked extension opnieuw worden gebouwd en in Edge/Chrome worden gereaload
 
 ## Systeem in één beeld
 - Extension ingestie: [src/content.ts](src/content.ts) en [src/lib/page-capture.ts](src/lib/page-capture.ts)
@@ -54,11 +58,27 @@ cp .env.example .env
 npm run build
 ```
 
-1. Open Chrome op `chrome://extensions`.
+1. Open Chrome op `chrome://extensions` of Edge op `edge://extensions`.
 2. Zet `Developer mode` aan.
 3. Kies `Load unpacked`.
 4. Selecteer `dist/`.
 5. Open daarna de extension en vul in `Options` je eigen OpenAI key in.
+6. Na een nieuwe build: klik `Reload` op de extension en herlaad ook de huidige webpagina.
+
+## Handmatig gevalideerde extension-flow
+Getest op: `https://miljuschka.nl/crispy-zalm-bowl/`
+
+1. Bouw de extension met `npm run build`.
+2. Laad `dist/` als unpacked extension in Edge of Chrome.
+3. Zet in `Options` een geldige OpenAI key.
+4. Open een normale `https://` receptpagina, niet een browser-interne pagina.
+5. Herlaad de pagina als de extension net is gereaload.
+6. Open de popup en klik `Vang recept van huidige pagina`.
+7. Controleer dat JSON zichtbaar wordt in de popup en dat kopieren/downloaden werkt.
+
+Bekende UX-valkuilen:
+- `Could not establish connection. Receiving end does not exist.` betekent meestal dat de content script niet in de huidige tab draait; herlaad dan de webpagina of test niet op een interne browserpagina.
+- Een OpenAI schemafout over `format: "uri"` of ontbrekende `required` keys hoort met de huidige build niet meer voor te komen.
 
 ## Lokale API starten
 Zet in `.env` minimaal:
@@ -122,6 +142,7 @@ Daarmee kun je nu:
 - `npm run typecheck`
 - `npm test`
 - `npm run build`
+- live Responses API schema-validatie uitgevoerd tegen OpenAI met het huidige `recipe_document` schema
 - handmatig geverifieerd:
   - `GET /health`
   - `POST /api/recipes/import-json`
@@ -131,6 +152,8 @@ Daarmee kun je nu:
   - publiek recept opslaan in tweede gebruiker zijn receptenboek
   - `GET /api/users/:userId/recipes`
   - `GET /api/recipes/public`
+  - extension-popup op echte receptpagina
+  - unpacked extension werkt in Edge/Chrome na reload
 
 ## Volgende logische slice
 - extension direct laten posten naar de lokale API
