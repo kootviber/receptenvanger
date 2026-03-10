@@ -95,7 +95,7 @@ function sanitizeJsonSchema(value: unknown): unknown {
   const result: Record<string, unknown> = {};
 
   for (const [key, nestedValue] of Object.entries(value)) {
-    if (key === "$schema" || key === "default") {
+    if (key === "$schema" || key === "default" || key === "format") {
       continue;
     }
 
