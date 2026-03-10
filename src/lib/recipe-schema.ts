@@ -102,6 +102,15 @@ function sanitizeJsonSchema(value: unknown): unknown {
     result[key] = sanitizeJsonSchema(nestedValue);
   }
 
+  if (
+    result.type === "object" &&
+    result.properties &&
+    typeof result.properties === "object" &&
+    !Array.isArray(result.properties)
+  ) {
+    result.required = Object.keys(result.properties as Record<string, unknown>);
+  }
+
   return result;
 }
 
