@@ -1,0 +1,25 @@
+{
+  "name": "receptenvanger",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Chrome extensie MVP voor het extraheren van recepten naar gestructureerde JSON.",
+  "scripts": {
+    "start:api": "node --env-file=.env server-dist/api.cjs",
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "zod": "^3.24.2",
+    "zod-to-json-schema": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.321",
+    "@types/node": "^24.0.0",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.9"
+  }
+}

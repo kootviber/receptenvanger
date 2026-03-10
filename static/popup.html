@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Receptenvanger</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="app-shell">
+    <main class="panel">
+      <header class="panel-header">
+        <div>
+          <p class="eyebrow">Chrome extension MVP</p>
+          <h1>Receptenvanger</h1>
+        </div>
+        <button id="open-options" class="secondary-button" type="button">Options</button>
+      </header>
+
+      <p id="settings-status" class="muted"></p>
+
+      <label class="field">
+        <span>Extra context voor AI</span>
+        <textarea
+          id="manual-notes"
+          rows="4"
+          placeholder="Bijvoorbeeld: focus op 2-persoons porties, laat onzekere nutritionele info leeg."
+        ></textarea>
+      </label>
+
+      <div class="button-row">
+        <button id="capture-button" class="primary-button" type="button">Vang recept van huidige pagina</button>
+      </div>
+
+      <p id="status" class="status">Nog niets uitgevoerd.</p>
+
+      <section class="result-card">
+        <div class="result-header">
+          <h2>Recipe JSON</h2>
+          <div class="button-row compact">
+            <button id="copy-button" class="secondary-button" type="button">Kopieer</button>
+            <button id="download-button" class="secondary-button" type="button">Download</button>
+          </div>
+        </div>
+        <pre id="json-output" class="json-output">Voer eerst een analyse uit.</pre>
+      </section>
+    </main>
+
+    <script type="module" src="./popup.js"></script>
+  </body>
+</html>

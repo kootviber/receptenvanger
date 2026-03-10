@@ -1,0 +1,27 @@
+﻿name: Preview
+
+on:
+  pull_request:
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build and deploy preview
+        # Koppel aan hostingprovider (Vercel/Netlify/etc.)
+        run: echo "Preview deploy placeholder"
+
+      - name: Smoke test
+        # Vervang met smoke test tegen preview URL
+        run: echo "Smoke test placeholder"
+
+      - name: Visual review hook
+        # Optioneel: trigger visual regression tool
+        run: echo "Visual review placeholder"
+
+      - name: Migration safety check
+        # Optioneel: dry-run of migratievalidatie
+        run: echo "Migration safety check placeholder"

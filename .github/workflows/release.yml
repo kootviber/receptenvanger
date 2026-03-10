@@ -1,0 +1,30 @@
+﻿name: Release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy production
+        # Koppel aan productie-deploystap
+        run: echo "Production deploy placeholder"
+
+      - name: Post-deploy smoke test
+        # Vervang door rooktest van kritieke paden
+        run: echo "Post-deploy smoke placeholder"
+
+      - name: Rollback referentie
+        # Verwijs naar runbook of script
+        run: echo "Rollback: zie docs/04-runbook.md"
+
+      - name: Release notes / changelog
+        # Vervang door automatische release notes of changelog-check
+        run: echo "Release notes placeholder"

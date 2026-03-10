@@ -1,0 +1,41 @@
+﻿name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup runtime
+        # Vervang door stack-specifieke setup (bijv. Node/Python/Go)
+        run: echo "Setup runtime placeholder"
+
+      - name: Install dependencies
+        # Vervang door echte installstap
+        run: echo "Install placeholder"
+
+      - name: Lint
+        # Vervang door lint commando
+        run: echo "Lint placeholder"
+
+      - name: Typecheck
+        # Vervang door typecheck commando
+        run: echo "Typecheck placeholder"
+
+      - name: Unit tests
+        # Vervang door unit test commando
+        run: echo "Unit tests placeholder"
+
+      - name: Integration tests
+        # Vervang door integration test commando
+        run: echo "Integration tests placeholder"
+
+      - name: Build
+        # Vervang door build commando
+        run: echo "Build placeholder"
