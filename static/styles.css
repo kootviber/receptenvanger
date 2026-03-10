@@ -26,7 +26,8 @@ body {
 }
 
 .app-shell {
-  min-width: 380px;
+  width: 720px;
+  min-width: 720px;
   min-height: 100vh;
   padding: 16px;
 }
@@ -158,6 +159,8 @@ button:disabled {
   font-family: "SFMono-Regular", monospace;
   font-size: 12px;
   line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .compact {
